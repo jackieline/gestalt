@@ -28,6 +28,12 @@ card(
         type: 'React.Node',
       },
       {
+        name: 'accessibilityRole',
+        type: `"img" | "none" | "presentation"`,
+        required: false,
+        description: `Pass in to simplify what is read by a screen reader. The 'img' label is like a black box and does not access what is inside. *Note: If you have multiple images that act as one, such as a collage or stacked image component, wrap the component with a prop role="img". 'none' and 'presentation' are interchangeable, they hide semantics but will still "read" any text inside.`,
+      },
+      {
         name: 'alt',
         type: 'string',
         required: true,

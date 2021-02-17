@@ -7,6 +7,7 @@ import styles from './Image.css';
 const shouldScaleImage = (fit) => fit === 'cover' || fit === 'contain';
 
 type Props = {|
+  accessibilityRole?: 'img' | 'none' | 'presentation',
   alt: string,
   children?: Node,
   color: string,
@@ -24,6 +25,7 @@ type Props = {|
 
 export default class Image extends PureComponent<Props> {
   static propTypes = {
+    accessibilityRole: PropTypes.oneOf(['img' | 'none' | 'presentation']),
     alt: PropTypes.string.isRequired,
     children: PropTypes.node,
     color: PropTypes.string,
@@ -87,6 +89,7 @@ export default class Image extends PureComponent<Props> {
 
   render(): Node {
     const {
+      accessibilityRole,
       alt,
       color,
       children,
@@ -115,33 +118,35 @@ export default class Image extends PureComponent<Props> {
           backgroundColor: color,
           backgroundImage: `url('${src}')`,
         }}
-        role="img"
+        role={accessibilityRole ?? 'img'}
       >
         {childContent}
       </div>
     ) : (
-      <Box
-        position="relative"
-        dangerouslySetInlineStyle={{
-          __style: {
-            backgroundColor: color,
-            paddingBottom: `${(naturalHeight / naturalWidth) * 100}%`,
-          },
-        }}
-      >
-        <img
-          alt={alt}
-          className={styles.img}
-          importance={importance}
-          loading={loading}
-          onError={this.handleError}
-          onLoad={this.handleLoad}
-          sizes={sizes}
-          src={src}
-          srcSet={srcSet}
-        />
-        {childContent}
-      </Box>
+      <div aria-label={alt} role={accessibilityRole ?? {}}>
+        <Box
+          position="relative"
+          dangerouslySetInlineStyle={{
+            __style: {
+              backgroundColor: color,
+              paddingBottom: `${(naturalHeight / naturalWidth) * 100}%`,
+            },
+          }}
+        >
+          <img
+            alt={alt}
+            className={styles.img}
+            importance={importance}
+            loading={loading}
+            onError={this.handleError}
+            onLoad={this.handleLoad}
+            sizes={sizes}
+            src={src}
+            srcSet={srcSet}
+          />
+          {childContent}
+        </Box>
+      </div>
     );
   }
 }

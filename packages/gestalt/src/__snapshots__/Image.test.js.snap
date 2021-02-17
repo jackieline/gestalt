@@ -2,23 +2,28 @@
 
 exports[`Image matches snapshot 1`] = `
 <div
-  className="box relative"
-  style={
-    Object {
-      "backgroundColor": "transparent",
-      "paddingBottom": "100%",
-    }
-  }
+  aria-label="foo"
+  role={Object {}}
 >
-  <img
-    alt="foo"
-    className="img"
-    importance="auto"
-    loading="auto"
-    onError={[Function]}
-    onLoad={[Function]}
-    src="foo.png"
-  />
+  <div
+    className="box relative"
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "paddingBottom": "100%",
+      }
+    }
+  >
+    <img
+      alt="foo"
+      className="img"
+      importance="auto"
+      loading="auto"
+      onError={[Function]}
+      onLoad={[Function]}
+      src="foo.png"
+    />
+  </div>
 </div>
 `;
 
@@ -64,27 +69,32 @@ exports[`Image with fit: cover matches snapshot 1`] = `
 
 exports[`Image with overlay matches snapshot 1`] = `
 <div
-  className="box relative"
-  style={
-    Object {
-      "backgroundColor": "transparent",
-      "paddingBottom": "100%",
-    }
-  }
+  aria-label="foo"
+  role={Object {}}
 >
-  <img
-    alt="foo"
-    className="img"
-    importance="auto"
-    loading="auto"
-    onError={[Function]}
-    onLoad={[Function]}
-    src="foo.png"
-  />
   <div
-    className="absolute bottom0 box left0 overflowHidden right0 top0"
+    className="box relative"
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "paddingBottom": "100%",
+      }
+    }
   >
-    Foo.png
+    <img
+      alt="foo"
+      className="img"
+      importance="auto"
+      loading="auto"
+      onError={[Function]}
+      onLoad={[Function]}
+      src="foo.png"
+    />
+    <div
+      className="absolute bottom0 box left0 overflowHidden right0 top0"
+    >
+      Foo.png
+    </div>
   </div>
 </div>
 `;
